@@ -1,0 +1,633 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>hello</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
+      </head>
+      <body class="">
+        <div id="root"></div>
+        <script type="text/babel">
+          const { useState, useEffect } = React;
+
+          function Template2({ components }) {
+  _s();
+  const {
+    name = "Your Name",
+    bio = "Tell us about yourself...",
+    email = "your.email@example.com",
+    github = "",
+    linkedin = "",
+    whatsapp = "",
+    profilePic,
+    skills = [],
+    projects = [],
+    certificates = []
+  } = components;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") || "light";
+    }
+    return "light";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.classList.toggle("dark", theme === "dark");
+      localStorage.setItem("theme", theme);
+    }
+  }, [theme]);
+  const toggleTheme = () => {
+    setTheme((prev) => prev === "light" ? "dark" : "light");
+  };
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+  const handleImageError = (e, type, index = null) => {
+    console.error(`Failed to load ${type} image:`, e.target.src);
+    e.target.style.display = "none";
+    const parent = e.target.parentElement;
+    const fallback = document.createElement("div");
+    fallback.className = "w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 rounded";
+    fallback.textContent = "Image Not Available";
+    parent.appendChild(fallback);
+  };
+  const navLinks = [
+    { href: "#profile", label: "About" },
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
+    { href: "#certificates", label: "Certificates" },
+    { href: "#contact", label: "Contact" }
+  ];
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      const headerOffset = document.querySelector("header")?.offsetHeight || 0;
+      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - headerOffset,
+        behavior: "smooth"
+      });
+    }
+    setIsMenuOpen(false);
+  };
+  return /* @__PURE__ */ jsxDEV("div", { className: `min-h-screen ${theme === "dark" ? "dark bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"}`, children: [
+    /* @__PURE__ */ jsxDEV("header", { className: "bg-blue-600 text-white py-4 sticky top-0 z-50 shadow-md", children: [
+      /* @__PURE__ */ jsxDEV("div", { className: "container mx-auto px-4 flex justify-between items-center", children: [
+        /* @__PURE__ */ jsxDEV("h1", { className: "text-2xl font-bold", children: name }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 95,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4", children: [
+          /* @__PURE__ */ jsxDEV("nav", { className: "hidden md:flex space-x-6", children: navLinks.map(
+            (link) => /* @__PURE__ */ jsxDEV(
+              "a",
+              {
+                href: link.href,
+                className: "text-lg font-medium hover:text-blue-200 transition-colors duration-200",
+                onClick: (e) => handleNavClick(e, link.href),
+                children: link.label
+              },
+              link.href,
+              false,
+              {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 99,
+                columnNumber: 15
+              },
+              this
+            )
+          ) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 97,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ jsxDEV(
+            "button",
+            {
+              className: "text-2xl p-3 rounded-full hover:bg-blue-700 transition-colors duration-200",
+              "aria-label": "Toggle theme",
+              onClick: toggleTheme,
+              children: theme === "light" ? /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxDEV("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 116,
+                columnNumber: 19
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 115,
+                columnNumber: 15
+              }, this) : /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxDEV("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 120,
+                columnNumber: 19
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 119,
+                columnNumber: 15
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 109,
+              columnNumber: 13
+            },
+            this
+          ),
+          /* @__PURE__ */ jsxDEV(
+            "button",
+            {
+              className: "md:hidden text-2xl p-3 rounded-full hover:bg-blue-700 transition-colors duration-200",
+              "aria-label": "Toggle menu",
+              onClick: toggleMenu,
+              children: isMenuOpen ? /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxDEV("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 131,
+                columnNumber: 19
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 130,
+                columnNumber: 15
+              }, this) : /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxDEV("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 135,
+                columnNumber: 19
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 134,
+                columnNumber: 15
+              }, this)
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 124,
+              columnNumber: 13
+            },
+            this
+          )
+        ] }, void 0, true, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 96,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 94,
+        columnNumber: 9
+      }, this),
+      isMenuOpen && /* @__PURE__ */ jsxDEV("nav", { className: "md:hidden bg-blue-700 py-4 px-4 block w-full transition-all duration-300 ease-in-out", children: /* @__PURE__ */ jsxDEV("div", { className: "container mx-auto flex flex-col space-y-4", children: navLinks.map(
+        (link) => /* @__PURE__ */ jsxDEV(
+          "a",
+          {
+            href: link.href,
+            className: "text-lg font-medium hover:text-blue-200 transition-colors duration-200",
+            onClick: (e) => handleNavClick(e, link.href),
+            children: link.label
+          },
+          link.href,
+          false,
+          {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 145,
+            columnNumber: 13
+          },
+          this
+        )
+      ) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 143,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 142,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+      lineNumber: 93,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("main", { className: "container mx-auto px-4 py-8", children: [
+      /* @__PURE__ */ jsxDEV("section", { id: "profile", className: "mb-12 scroll-mt-20", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg", children: [
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-3xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100", children: "About Me" }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 162,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "flex flex-col md:flex-row items-center gap-6", children: [
+          profilePic ? /* @__PURE__ */ jsxDEV(
+            "img",
+            {
+              src: profilePic,
+              alt: "Profile",
+              className: "w-32 h-32 rounded-full object-cover border-4 border-blue-500",
+              onError: (e) => handleImageError(e, "profile")
+            },
+            void 0,
+            false,
+            {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 165,
+              columnNumber: 15
+            },
+            this
+          ) : /* @__PURE__ */ jsxDEV("div", { className: "w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center text-gray-600", children: "No Image" }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 172,
+            columnNumber: 15
+          }, this),
+          /* @__PURE__ */ jsxDEV("div", { className: "text-center md:text-left", children: [
+            /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-semibold mb-2 text-gray-900 dark:text-gray-100", children: name }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 175,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mb-4 text-gray-700 dark:text-gray-300", children: bio }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 176,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0", children: [
+              email && /* @__PURE__ */ jsxDEV("p", { children: [
+                /* @__PURE__ */ jsxDEV("strong", { children: "Email:" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 180,
+                  columnNumber: 23
+                }, this),
+                " ",
+                /* @__PURE__ */ jsxDEV("a", { href: `mailto:${email}`, className: "text-blue-500 hover:underline", children: email }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 181,
+                  columnNumber: 23
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 179,
+                columnNumber: 19
+              }, this),
+              github && /* @__PURE__ */ jsxDEV("p", { children: [
+                /* @__PURE__ */ jsxDEV("strong", { children: "GitHub:" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 188,
+                  columnNumber: 23
+                }, this),
+                " ",
+                /* @__PURE__ */ jsxDEV("a", { href: github, target: "_blank", rel: "noopener noreferrer", className: "text-blue-500 hover:underline", children: github.split("/").pop() || "GitHub" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 189,
+                  columnNumber: 23
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 187,
+                columnNumber: 19
+              }, this),
+              linkedin && /* @__PURE__ */ jsxDEV("p", { children: [
+                /* @__PURE__ */ jsxDEV("strong", { children: "LinkedIn:" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 196,
+                  columnNumber: 23
+                }, this),
+                " ",
+                /* @__PURE__ */ jsxDEV("a", { href: linkedin, target: "_blank", rel: "noopener noreferrer", className: "text-blue-500 hover:underline", children: linkedin.split("/").pop() || "LinkedIn" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 197,
+                  columnNumber: 23
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 195,
+                columnNumber: 19
+              }, this),
+              whatsapp && /* @__PURE__ */ jsxDEV("p", { children: [
+                /* @__PURE__ */ jsxDEV("strong", { children: "WhatsApp:" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 204,
+                  columnNumber: 23
+                }, this),
+                " ",
+                /* @__PURE__ */ jsxDEV("a", { href: whatsapp, target: "_blank", rel: "noopener noreferrer", className: "text-blue-500 hover:underline", children: "Contact via WhatsApp" }, void 0, false, {
+                  fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                  lineNumber: 205,
+                  columnNumber: 23
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 203,
+                columnNumber: 19
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 177,
+              columnNumber: 17
+            }, this)
+          ] }, void 0, true, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 174,
+            columnNumber: 15
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 163,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 161,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 160,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("section", { id: "skills", className: "mb-12 scroll-mt-20", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg", children: [
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-3xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100", children: "Skills" }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 218,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-4", children: skills.length > 0 ? skills.map(
+          (skill, index) => /* @__PURE__ */ jsxDEV("div", { className: "bg-gray-100 dark:bg-gray-700 p-3 rounded text-center text-gray-900 dark:text-gray-100", children: skill }, index, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 222,
+            columnNumber: 15
+          }, this)
+        ) : /* @__PURE__ */ jsxDEV("p", { className: "text-center col-span-full text-gray-700 dark:text-gray-300", children: "No skills listed." }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 227,
+          columnNumber: 15
+        }, this) }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 219,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 217,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 216,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("section", { id: "projects", className: "mb-12 scroll-mt-20", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg", children: [
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-3xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100", children: "Projects" }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 235,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-6", children: projects.length > 0 ? projects.map(
+          (project, index) => /* @__PURE__ */ jsxDEV("div", { className: "bg-gray-100 dark:bg-gray-700 p-4 rounded-lg", children: [
+            project.image ? /* @__PURE__ */ jsxDEV(
+              "img",
+              {
+                src: project.image,
+                alt: project.name,
+                className: "w-full h-48 object-cover rounded mb-4",
+                onError: (e) => handleImageError(e, "project", index)
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 241,
+                columnNumber: 17
+              },
+              this
+            ) : /* @__PURE__ */ jsxDEV("div", { className: "w-full h-48 bg-gray-300 flex items-center justify-center text-gray-600 mb-4 rounded", children: "No Image" }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 248,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("h3", { className: "text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100", children: project.name || "Unnamed Project" }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 250,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mb-4 text-gray-700 dark:text-gray-300", children: project.description || "No description available." }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 251,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "flex space-x-4", children: [
+              project.link && /* @__PURE__ */ jsxDEV("a", { href: project.link, target: "_blank", rel: "noopener noreferrer", className: "text-blue-500 hover:underline", children: "View Project" }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 254,
+                columnNumber: 19
+              }, this),
+              project.github && /* @__PURE__ */ jsxDEV("a", { href: project.github, target: "_blank", rel: "noopener noreferrer", className: "text-blue-500 hover:underline", children: "GitHub" }, void 0, false, {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 257,
+                columnNumber: 19
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 252,
+              columnNumber: 21
+            }, this)
+          ] }, index, true, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 239,
+            columnNumber: 15
+          }, this)
+        ) : /* @__PURE__ */ jsxDEV("p", { className: "text-center col-span-full text-gray-700 dark:text-gray-300", children: "No projects listed." }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 263,
+          columnNumber: 15
+        }, this) }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 236,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 234,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 233,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("section", { id: "certificates", className: "mb-12 scroll-mt-20", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg", children: [
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-3xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100", children: "Certificates" }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 271,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-6", children: certificates.length > 0 ? certificates.map(
+          (certificate, index) => /* @__PURE__ */ jsxDEV("div", { className: "bg-gray-100 dark:bg-gray-700 p-4 rounded-lg", children: [
+            certificate.image ? /* @__PURE__ */ jsxDEV(
+              "img",
+              {
+                src: certificate.image,
+                alt: certificate.title,
+                className: "w-full h-48 object-contain rounded mb-4 bg-white",
+                onError: (e) => handleImageError(e, "certificate", index)
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+                lineNumber: 277,
+                columnNumber: 17
+              },
+              this
+            ) : /* @__PURE__ */ jsxDEV("div", { className: "w-full h-48 bg-gray-300 flex items-center justify-center text-gray-600 mb-4 rounded", children: "No Image" }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 284,
+              columnNumber: 17
+            }, this),
+            /* @__PURE__ */ jsxDEV("h3", { className: "text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100", children: certificate.title || "Untitled Certificate" }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 286,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mb-2 text-gray-700 dark:text-gray-300", children: [
+              "Date: ",
+              certificate.date ? new Date(certificate.date).toLocaleDateString() : "N/A"
+            ] }, void 0, true, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 287,
+              columnNumber: 21
+            }, this),
+            certificate.credential && /* @__PURE__ */ jsxDEV("a", { href: certificate.credential, target: "_blank", rel: "noopener noreferrer", className: "text-blue-500 hover:underline", children: "View Credential" }, void 0, false, {
+              fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+              lineNumber: 289,
+              columnNumber: 17
+            }, this)
+          ] }, index, true, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 275,
+            columnNumber: 15
+          }, this)
+        ) : /* @__PURE__ */ jsxDEV("p", { className: "text-center col-span-full text-gray-700 dark:text-gray-300", children: "No certificates listed." }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 294,
+          columnNumber: 15
+        }, this) }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 272,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 270,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 269,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("section", { id: "contact", className: "mb-12 scroll-mt-20", children: /* @__PURE__ */ jsxDEV("div", { className: "bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center", children: [
+        /* @__PURE__ */ jsxDEV("h2", { className: "text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100", children: "Contact Me" }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 302,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "flex justify-center space-x-6 mb-4", children: [
+          email && /* @__PURE__ */ jsxDEV("a", { href: `mailto:${email}`, className: "text-2xl text-blue-500 hover:text-blue-700", children: /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxDEV("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 307,
+            columnNumber: 21
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 306,
+            columnNumber: 19
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 305,
+            columnNumber: 15
+          }, this),
+          github && /* @__PURE__ */ jsxDEV("a", { href: github, target: "_blank", rel: "noopener noreferrer", className: "text-2xl text-blue-500 hover:text-blue-700", children: /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ jsxDEV("path", { d: "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 314,
+            columnNumber: 21
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 313,
+            columnNumber: 19
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 312,
+            columnNumber: 15
+          }, this),
+          linkedin && /* @__PURE__ */ jsxDEV("a", { href: linkedin, target: "_blank", rel: "noopener noreferrer", className: "text-2xl text-blue-500 hover:text-blue-700", children: /* @__PURE__ */ jsxDEV("svg", { xmlns: "http://www.w3.org/2000/svg", className: "h-8 w-8", fill: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ jsxDEV("path", { d: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 321,
+            columnNumber: 21
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 320,
+            columnNumber: 19
+          }, this) }, void 0, false, {
+            fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+            lineNumber: 319,
+            columnNumber: 15
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 303,
+          columnNumber: 13
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { className: "text-gray-700 dark:text-gray-300", children: "Feel free to reach out for opportunities or collaborations!" }, void 0, false, {
+          fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+          lineNumber: 326,
+          columnNumber: 13
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 301,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+        lineNumber: 300,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+      lineNumber: 159,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("footer", { className: "bg-blue-600 text-white py-4", children: /* @__PURE__ */ jsxDEV("div", { className: "container mx-auto px-4 text-center", children: /* @__PURE__ */ jsxDEV("p", { children: [
+      "© ",
+      (/* @__PURE__ */ new Date()).getFullYear(),
+      " ",
+      name,
+      ". All rights reserved."
+    ] }, void 0, true, {
+      fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+      lineNumber: 333,
+      columnNumber: 11
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+      lineNumber: 332,
+      columnNumber: 9
+    }, this) }, void 0, false, {
+      fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+      lineNumber: 331,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/hp/OneDrive/Desktop/templates/client/src/templates/template2.jsx",
+    lineNumber: 92,
+    columnNumber: 5
+  }, this);
+}
+
+          const components = {"name":"hello","bio":"hello","email":"dussauday469@gmail.com","github":"http://localhost:5173/","linkedin":"http://localhost:51","skills":["Python","HTML","SQL","AWS","Kubernetes","GraphQL","PostgreSQL","Angular","Redux","Babel","Bootstrap","LESS","Mocha","JavaScript","Node.js","Java","CSS","Git"],"projects":[{"name":"hello","description":"heloo","link":"http://localhost:5173/","github":"http://localhost:5173/","image":"https://res.cloudinary.com/drc8bufjn/image/upload/v1750260959/portfolios/auizdteitiqqwsvzqufc.jpg"}],"certificates":[{"title":"hello","date":"20004-12-23","credential":"http://localhost:5173/","image":null}],"profilePic":"https://res.cloudinary.com/drc8bufjn/image/upload/v1750260900/portfolios/zjtuclyndsi7qz0wzbl3.jpg"};
+          ReactDOM.render(<Template2 components={components} />, document.getElementById('root'));
+        </script>
+      </body>
+      </html>
+    
